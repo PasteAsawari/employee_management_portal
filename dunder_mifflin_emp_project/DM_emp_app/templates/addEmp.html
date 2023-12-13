@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Add Employee || Dunder Mifflin Employee Portal</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+
+<body>
+  <div class="container my-4">
+    <h3>Add a new employee</h3>
+    <hr>
+    <form action="/addEmp" , method="post">
+      {% csrf_token %}
+      <div class="mb-3">
+        <label for="employeeId" class="form-label">Employee Id</label>
+        <input type="text" class="form-control" id="employeeId" name="employeeId"
+          placeholder="Enter employee ID starting with 'E'">
+      </div>
+      <div class="mb-3">
+        <label for="fname" class="form-label">First Name</label>name
+        <input type="text" class="form-control" id="fname" name="fname">
+      </div>
+
+      <div class="mb-3">
+        <label for="lname" class="form-label">Last Name</label>
+        <input type="text" class="form-control" id="lname" name="lname">
+      </div>
+
+      <div class="mb-3">
+        <label for="email_id" class="form-label">Email Id</label>
+        <input type="email" class="form-control" id="email_id" name="email_id">
+      </div>
+
+      <div class="mb-3">
+        <label for="phone" class="form-label">Phone</label>
+        <input type="tel" class="form-control" id="phone" name="phone">
+      </div>
+
+      <div class="mb-3">
+        <label for="edepartment" class="form-label">Choose Department</label>
+        <select id="edepartment" name="edepartment">
+          <option selected disabled value=" ">Departments</option>
+          {% if depts %}
+          {% for dept in depts %}
+          <option value="{{dept.dept_name}}">{{dept.dept_name}}</option>
+          {% endfor%}
+          {%endif%}
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <label for="erole" class="form-label">Choose Role</label>
+        <select id="erole" name="erole">
+          <option selected disabled value=" ">Roles</option>
+          {% if roles %}
+          {% for r in roles %}
+          <option value="{{r.pos_name}}">{{r.pos_name}}</option>
+          {% endfor%}
+          {%endif%}
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <label for="salary" class="form-label">Salary</label>
+        <input type="number" class="form-control" id="salary" name="salary">
+      </div>
+
+      <div class="mb-3">
+        <label for="bonus" class="form-label">Bonus</label>
+        <input type="number" class="form-control" id="bonus" name="bonus">
+      </div>
+
+      <button type="submit" class="btn btn-secondary" style="background-color: crimson; color: white;" >Submit</button>
+    </form>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+    integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
