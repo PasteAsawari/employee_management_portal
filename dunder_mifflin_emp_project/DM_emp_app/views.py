@@ -1,7 +1,10 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, HttpResponse,redirect
 from .models import Employee,Department,Role
 from datetime import datetime
 from django.db.models import Q
+from django.contrib.auth import authenticate,login,logout
+from django.contrib.auth.models import User
+from django.contrib import messages
 
 # Create your views here.
 def index(request):
@@ -80,3 +83,25 @@ def filterEmp(request):
         return render(request,"filterEmp.html")
     else:
         return HttpResponse("Some error occured!!")
+    
+def portalLogin(request):
+    if  request.method == "POST":
+        username= request.POST.get("username","")
+        password= request.POST.get("pw","")
+        user = authenticate(username=username,password=password)
+        if user is None:
+            messages.error(request,"Invalid Creadentials! Please enter valid username and password")
+            return render(request,"login.html")
+        else:
+            login(request,user)
+            messages.success(request,"You have logged in Sucessfully!")
+            return redirect('/')
+    elif request.method =="GET":
+        return render(request,"login.html")
+    else:
+        return HttpResponse("Some error occured!")
+    
+def portalLogout(request):
+    logout(request)
+    messages.success(request,"You have sucessfully logged out!")
+    return redirect('/')

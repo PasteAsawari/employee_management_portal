@@ -5,6 +5,8 @@ from DM_emp_app import views
 #adding app's urlpatterns
 urlpatterns = [
     path('',views.index, name="index"),
+    path('login', views.portalLogin, name="login"),
+    path('logout', views.portalLogout, name="logout"),
     path('allEmp',views.allEmp, name="allEmp"),
     path('addEmp',views.addEmp, name="addEmp"),
     path('removeEmp',views.removeEmp, name="removeEmp"),
